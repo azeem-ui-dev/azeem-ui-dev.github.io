@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Snake game using HTML5 canvas tag by Azeem</title>
+	<style type="text/css">
+		/* Basic css for the game*/
+		body {
+			margin:10px;
+			padding:0;
+			font-family:Arial, Verdana;
+			font-size:100%;
+		}
+		#snakeGame {
+			display: none;
+		}
+		h1 {
+			font-size: 20px;
+		}
+		p {
+			font-size: 14px;
+		}
+		p.small {
+			font-size: 12px;
+			margin-bottom: 20px;
+		}
+		#canvasWrapper {
+			border:2px solid #c22d00;
+			width: 300px;
+			height:300px;
+			float: left;
+			margin-right: 20px;
+		}
+		#details {
+			float: left;
+		}
+		.clear {
+			clear: both;
+		}
+		#stage {
+			background-color:#222;
+		}
+		#result {
+			visibility: hidden;
+		}
+		#gameOver {
+			display: block;
+		}
+		#playAgainBtn {
+			padding: 5px;
+			margin-top: 15px;    
+		}​
+	</style>
+	<script type="text/javascript">
+	/*******************************************
+	--------------------------------------------
+	20th September 2012
+	Created by MOHAMMED AZEEMULLA	
+	--------------------------------------------
+	*******************************************/
+	function init() {
+		
+		// If canvas tag is supported
+		if (!!document.createElement("canvas").getContext) {
+			
+			document.getElementById('snakeGame').style.display = 'block';
+			
+			var canvas = document.getElementById("stage");
+			var ctx = canvas.getContext("2d");
+			var _x = 0;
+			var _y = 0;
+			var _w = canvas.width;   
+			var _h = canvas.height;
+		    var initLen=5;  //initial length of snake
+		    var shapes = []; //array to hold info about snake's each rect block position
+		    var timer = 200; // speed of snake's movement
+		    var mTimer; //timer var for setInterval
+		    var dir = 'right'; //dir of movement (left, right, top or down)
+		    var posx; //x pos of food
+		    var posy; //y pos of food 
+		    var points=0; //points
+		    var level=0; //higher levels faster snake movement
+		    var dirPrev = 'right'; //prev direction to calculate pos new snake's block after eating food
+			var collideFlag; //flag to check for snake colliding with itself
+			var speedInc = 20; //speed increment after each level
+			
+		    //to create rect block of snake / food
+		    function rectShape(x, y, w, h, fill) {
+		    	this.x = x || 0;
+		    	this.y = y || 0;
+		    	this.w = w || 0; 
+		    	this.h = h || 0;
+		    	ctx.fillStyle = fill;
+		    	ctx.fillRect(this.x, this.y, this.w, this.h);
+		    }
+		    
+		    //draw initial snake
+		    function draw_snake() {				
+				//draw snake
+				ctx.clearRect(0,0,300,300);
+				for(i=0;i<initLen;i++) {
+					shapes.push(new rectShape(_x, _y, 9, 9, '#51c28f'));
+					_x = _x+10;
+				}
+				_x=_x-10;
+				document.getElementById('level').innerHTML = level;
+				document.getElementById('points').innerHTML = points;
+				draw_food();
+				
+				init_snake_movement();
+			}
+			
+			//start snake movement
+			function init_snake_movement() {		
+				if(typeof mTimer != "undefined") clearInterval(mTimer);
+				mTimer = setInterval(move_snake, timer);
+			}
+			
+		    //draw food in random position on canvas
+		    function draw_food() {
+		    	
+		    	var flg = false;
+		    	posx = Math.round(Math.random()*(_w-10)/10)*10;
+		    	posy = Math.round(Math.random()*(_h-10)/10)*10;
+		    	
+		        // check if food is not drawn on current snake area
+		        for(j=0;j<shapes.length;j++) {
+		        	if(posx == shapes[j].x  && posy == shapes[j].y) {
+		        		flg = true;
+		        		break;     
+		        	}                
+		        }
+
+		        if(flg == true)
+		        	draw_food();
+		        else
+		        	rectShape(posx, posy, 9, 9, '#147dad');            
+		        
+		    }
+		    
+		    //Detect arrow key pressed. Shouldnt be same arrow or opposite direction arrow
+		    function keyDown(e){   
+		    	if(e.keyCode == 40 && dir != 'up') /* down arrow */
+		    		{dir = 'down'}
+		    	else if (e.keyCode == 39 && dir != 'left') /* right arrow */              
+		    		{dir = 'right'}                    
+		    	else if (e.keyCode == 38 && dir != 'down') /* up arrow */
+		    		{dir = 'up'}        
+		    	else if (e.keyCode == 37 && dir != 'right') /* left arrow */              
+		    		{dir = 'left'}
+		    }
+		    
+		    //move snake in direction of arrow key pressed
+		    function move_snake() {
+		    	
+				//below two lines remove last snake block                    
+				ctx.clearRect(shapes[0].x, shapes[0].y, 10, 10);
+				shapes.shift();
+
+				if(dir=='down') _y = _y+10;
+				if(dir=='right') _x = _x+10;
+				if(dir=='up') _y = _y-10;
+				if(dir=='left') _x = _x-10;
+				
+				//if snake goes beyond wall END GAME
+				if(_x<0 || _y<0 || _x >= _w || _y >= _h) {
+					game_over();
+				}
+				else {
+					//check if snake collides with its own tail
+					collideFlag = false;
+					for(j=0;j<shapes.length;j++) {
+						if(_x == shapes[j].x  && _y == shapes[j].y) {
+							collideFlag = true;
+							break;     
+						}                
+					}
+					if(collideFlag == true) {
+						game_over();
+					}
+					else {
+						//creates new snake block      
+						shapes.push(new rectShape(_x, _y, 9, 9, '#51c28f'));
+						
+						//if snake has eaten the food 
+						if(_x==posx && _y==posy) {
+							
+							//increase snake length
+							shapes.push(new rectShape(posx, posy, 9, 9, '#51c28f'));
+							//draw new food
+							draw_food();
+							
+							//increase points
+							points = points+10;
+							document.getElementById('points').innerHTML = points;
+							
+							//increment level if sufficient points
+							if(points == (level+1)*50) {
+								level = level + 1;
+								timer = timer-speedInc;
+								document.getElementById('level').innerHTML = level;
+								dirPrev = dir;
+								init_snake_movement();                     
+							}
+							
+						}
+						dirPrev = dir;
+					}
+				}                
+			}
+
+			var blinkTimer;
+		    //Game Over. Clear canvas and reset variables.
+		    function game_over() {
+		    	ctx.clearRect(0,0,300,300);        
+		    	if(mTimer)
+		    	{
+		    		window.clearInterval(mTimer);
+		    		mTimer = 0;
+		    	}
+		    	shapes.length = 0;
+		    	timer = 200;
+		    	_x = 0;
+		    	_y = 0;
+		    	points=0;
+		    	level=0;
+		    	dir = 'right';
+		    	dirPrev = 'right';
+		    	collideFlag = false;
+		    	document.getElementById('result').style.visibility = 'visible';
+		    	var gameOverText = document.getElementById('gameOver');
+		    	blinkTimer = setInterval(function() {
+		    		if (gameOverText.style.color == 'red')  
+		    		{  
+		    			gameOverText.style.color = 'blue';  
+		    		}  
+		    		else  
+		    		{  
+		    			gameOverText.style.color = 'red';  
+		    		}
+		    	}, 300);
+		    }
+		    
+		    //Play again btn click handler. Clear game over blink timer, hide result div and draw snake    
+		    function play_again() {
+		    	if(blinkTimer) {
+		    		clearInterval(blinkTimer);
+		    	}    
+		    	document.getElementById('result').style.visibility = 'hidden';
+		    	
+		    	draw_snake();
+		    }
+		    
+			//draw snake on page load
+			draw_snake();
+			
+			//call keyDown function upon arrow key press
+			window.addEventListener('keydown', keyDown, false);	
+			//call play_again on click of play again button
+			document.getElementById('playAgainBtn').addEventListener("click", play_again, false);
+			
+		}
+		else {
+			document.getElementById('mainWrapper').innerHTML = "Your browser does not support HTML5 canvas tag."
+		}
+	}
+
+	window.onload = init;
+</script>
+</head>
+
+<body>
+	<div id="mainWrapper">
+		<div id="snakeGame">
+			<h1>Snake Game using HTML5 Canvas tag</h1>
+			<p>Use arrow keys to control the snake</p>
+			<p class="small">Game ends if the snake collides with itself or if it collides with the red border</p>
+			<div id="canvasWrapper"><canvas id="stage" width="300" height="300"></canvas></div>
+			<div id="details">        
+				<p>Level: <span id="level"></span></p>
+				<p>Points: <span id="points"></span></p>
+				<div id="result">
+					<span id="gameOver">Game Over</span>
+					<input id="playAgainBtn" type="button" value="Play Again" />
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</body>
+</html>
