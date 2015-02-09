@@ -21,19 +21,26 @@
 	</script>
 </head>
 
-<body>
+<body ng-app="myApp">
+  <div ng-controller="Controller">
+    <select class="colour-select" ng-model="setSelectedColour" ng-options="colour.label for colour in colours track by colour.code">
+    </select>
+  </div>
 
-	<div class="shop device-details">
-		<div class="header-container">
-			<h1>This is header</h1>
-			<select class="colour-select">
-				<option>Red</option>
-				<option>Blue</option>
-				<option>Green</option>
-			</select>
-		</div>
-	</div>
-
+  <script src="https://code.angularjs.org/1.4.0-beta.4/angular.js"></script>
+  <script>
+    angular.module('myApp', [])
+      .controller('Controller', ['$scope',
+        function($scope) {
+          $scope.colours = [
+            { 'label': 'White', 'code': '#ffffff' },
+            { 'label': 'Silver', 'code': '#c0c0c0' },
+            { 'label': 'Black', 'code': '#000000' }
+          ];
+          $scope.setSelectedColour = $scope.colours[0];
+        }
+      ]);
+  </script>
 </body>
 
 </html>
