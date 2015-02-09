@@ -11,12 +11,14 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.selectboxit/3.8.0/jquery.selectBoxIt.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			$('.colour-select').selectBoxIt({
-                autoWidth: false,
-                isDeviceListPage: true,
-                showEffect: 'slideDown',
-                showEffectSpeed: 100
-            });
+			setTimeout(function() {
+				$('.colour-select').selectBoxIt({
+	                autoWidth: false,
+	                isDeviceListPage: true,
+	                showEffect: 'slideDown',
+	                showEffectSpeed: 100
+	            });
+			}, 100);
 		});
 	</script>
 </head>
