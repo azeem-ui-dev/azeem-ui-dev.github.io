@@ -1,0 +1,151 @@
+.shop a {
+    color: palette-color(primary-pantone2925, 95);
+}
+
+.shop a:hover, .shop a:active, .shop a:focus {
+    text-decoration: underline;
+}
+
+.shop .small {
+    font-size: 12px;
+    font-size: 0.75rem;
+}
+
+.shop .selectboxit-container span {
+    height: 36px;
+    height: 2.25rem;
+    line-height: 36px;
+    line-height: 2.25rem;
+}
+
+.shop .selectboxit-container .selectboxit-btn {
+    border-color: palette-color(primary-black, 25);
+    color: #061f47;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.shop .selectboxit-container .selectboxit-btn .selectboxit-arrow-container {
+    border-left: 1px solid palette-color(primary-black, 15);
+    width: 35px;
+    width: 2.1875rem;
+}
+
+.shop .selectboxit-container .selectboxit-btn .selectboxit-arrow-container .selectboxit-default-arrow {
+    top: 43%;
+    border: 0;
+    background: url("../img/sprites/icons/generic/icon-drop-down-chevron.png") no-repeat;
+    height: 8px;
+    height: 0.5rem;
+    width: 8px;
+    width: 0.5rem;
+}
+
+.shop .selectboxit-container .selectboxit-btn.selectboxit-open {
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    -ms-border-radius: 4px 4px 0 0;
+    -o-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+}
+
+.shop .selectboxit-container .selectboxit-options {
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -ms-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+    border-top: 0;
+}
+
+.shop .selectboxit-container .selectboxit-options .selectboxit-option a {
+    height: 36px;
+    height: 2.25rem;
+    line-height: 36px;
+    line-height: 2.25rem;
+    color: #061f47;
+}
+
+.shop .selectboxit-container .selectboxit-options .selectboxit-option.selectboxit-focus a {
+    color: palette-color(primary-white);
+}
+
+.shop .selectboxit-container.colour-list .selectboxit-btn {
+    width: 75px;
+    background-image: none;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.shop .selectboxit-container.colour-list .selectboxit-btn .selectboxit-text {
+    width: 35px;
+}
+
+.shop .selectboxit-container.colour-list .selectboxit-btn .selectboxit-option-icon-container {
+    margin: 0;
+}
+
+.shop .selectboxit-container.colour-list .selectboxit-btn .selectboxit-arrow-container {
+    background-color: #f5f5f5;
+    background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+    background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    background-repeat: repeat-x;
+}
+
+.shop .selectboxit-container.colour-list .selectboxit-btn.selectboxit-open {
+    -webkit-border-bottom-right-radius: 4px;
+    -moz-border-bottom-right-radius: 4px;
+    -ms-border-bottom-right-radius: 4px;
+    -o-border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.shop .selectboxit-container.colour-list .selectboxit-list {
+    width: 40px;
+    min-width: 40px;
+}
+
+.shop .selectboxit-container.colour-list .selectboxit-list .selectboxit-option,
+.shop .selectboxit-container.colour-list .selectboxit-list .selectboxit-option-first {
+    border-radius: 0;
+    border-bottom: 1px solid #bebebe;
+}
+
+.shop .selectboxit-container.colour-list .selectboxit-list .selectboxit-option {
+    position: relative;
+    overflow: hidden;
+}
+
+.shop .selectboxit-container.colour-list .selectboxit-list .selectboxit-option .selectboxit-option-anchor {
+    overflow: hidden;
+}
+
+.shop .selectboxit-container.colour-list .selectboxit-list .selectboxit-option-last {
+    border-radius: 0;
+    border-bottom: 0;
+}
+
+.shop .selectboxit-container.colour-list .selectboxit-list > .selectboxit-focus > .selectboxit-option-anchor {
+    background: #000;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=$ieValue);
+    filter: alpha(opacity = 20);
+    -moz-opacity: 0.2;
+    -khtml-opacity: 0.2;
+    opacity: 0.2;
+}
+
+.shop .selectboxit-container.colour-list .colour2 {
+    position: absolute;
+    background-color: transparent;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 70px;
+    transform: rotate(-49deg);
+}
