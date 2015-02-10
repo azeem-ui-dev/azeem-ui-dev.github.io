@@ -367,6 +367,7 @@
             if (isColourList) {
 
                 if (isDeviceListPage) {
+                    alert(self.originalElemValue);
                     self.dropdown.attr('style', "background-color:" + self.originalElemValue + ";");
                 } else {
 
