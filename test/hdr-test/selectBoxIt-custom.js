@@ -363,6 +363,7 @@
             // Triggers a custom `create` event on the original dropdown list
             self.triggerEvent("create");
 
+            alert('colourlist: ', isColourList , ' deviceListPage: ', isDeviceListPage);
             // add selected item background colour if this is a colour drop-down
             if (isColourList) {
 
