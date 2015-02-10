@@ -367,10 +367,9 @@
             if (isColourList) {
 
                 if (isDeviceListPage) {
-                    alert('create fn', self.originalElemValue);
                     self.dropdown.attr('style', "background-color:" + self.originalElemValue + ";");
                 } else {
-                    alert('create fn else', self.originalElemValue);
+
                     var selectedItem = $(self.selectBox).find('option[selected]');
 
                     // set selected item's colour

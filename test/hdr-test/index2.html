@@ -23,14 +23,14 @@
 			}, 100);
 			setTimeout(function () {
                 $('.colour-select').data('selectBox-selectBoxIt').refresh();
-            }, 200);
+            }, 100);
 		});
 	</script>
 </head>
 
 <body ng-app="myApp" class="shop">
   <div ng-controller="Controller">
-    <select class="colour-select" ng-model="setSelectedColour" ng-options="colour.label for colour in colours track by colour.code">
+    <select class="colour-select" ng-model="selectedColour" ng-change="changeColour()" ng-options="colour.label for colour in colours track by colour.code">
     </select>
   </div>
 
@@ -44,7 +44,12 @@
             { 'label': 'Silver', 'code': '#c0c0c0' },
             { 'label': 'Black', 'code': '#000000' }
           ];
-          $scope.setSelectedColour = $scope.colours[0];
+          $scope.selectedColour = $scope.colours[0];
+          $scope.changeColour = function() {
+            setTimeout(function () {
+                $('.colour-select').data('selectBox-selectBoxIt').refresh();
+            }, 100);
+          };
         }
       ]);
   </script>
