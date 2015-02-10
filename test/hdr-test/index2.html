@@ -21,9 +21,6 @@
                 	isColourList: true
 	            });
 			}, 100);
-			setTimeout(function () {
-                $('.colour-select').data('selectBox-selectBoxIt').refresh();
-            }, 100);
 		});
 	</script>
 </head>
@@ -47,7 +44,7 @@
           $scope.selectedColour = $scope.colours[0];
           $scope.changeColour = function() {
             setTimeout(function () {
-                $('.colour-select').data('selectBox-selectBoxIt').refresh();
+                $('.colour-select').refresh();
             }, 100);
           };
         }
