@@ -1840,6 +1840,8 @@
         //    The dropdown will rebuild itself.  Useful for dynamic content.
         refresh: function (callback, internal) {
 
+            alert('refresh');
+
             var self = this;
 
             // Destroys the plugin and then recreates the plugin
