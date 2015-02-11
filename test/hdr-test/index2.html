@@ -12,7 +12,7 @@
 	<script type="text/javascript" src="selectBoxIt-custom.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			function initDropDown() {
+			setTimeout(function() {
 				$('.colour-select').selectBoxIt({
 	                autoWidth: false,
 	                isDeviceListPage: true,
@@ -20,9 +20,6 @@
 	                showEffectSpeed: 100,
                 	isColourList: true
 	            });
-			}
-			setTimeout(function() {
-				initDropDown();
 			}, 100);
 		});
 	</script>
@@ -47,7 +44,6 @@
           $scope.selectedColour = $scope.colours[0];
           $scope.changeColour = function() {
             setTimeout(function () {
-            	initDropDown();
             	$(".colour-select").selectBoxIt("refresh");
             }, 100);
           };
