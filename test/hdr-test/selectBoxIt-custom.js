@@ -363,12 +363,10 @@
             // Triggers a custom `create` event on the original dropdown list
             self.triggerEvent("create");
 
-            alert('colourlist: ', isColourList , ' deviceListPage: ', isDeviceListPage);
             // add selected item background colour if this is a colour drop-down
             if (isColourList) {
 
                 if (isDeviceListPage) {
-                    alert(self.originalElemValue);
                     self.dropdown.attr('style', "background-color:" + self.originalElemValue + ";");
                 } else {
 
@@ -1839,8 +1837,6 @@
         // -------
         //    The dropdown will rebuild itself.  Useful for dynamic content.
         refresh: function (callback, internal) {
-
-            alert('refresh');
 
             var self = this;
 
