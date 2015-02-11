@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="https://code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="selectBoxIt-custom.js"></script>
 	<script type="text/javascript">
-		/*$(function(){
+		$(function(){
 			function initDropDown() {
 				$('.colour-select').selectBoxIt({
 	                autoWidth: false,
@@ -24,13 +24,13 @@
 			setTimeout(function() {
 				initDropDown();
 			}, 100);
-		});*/
+		});
 	</script>
 </head>
 
 <body ng-app="myApp" class="shop">
   <div ng-controller="Controller">
-    <select class="colour-select" ng-model="selectedColour" ng-init="initDropdown()" ng-change="changeColour()" ng-options="colour.label for colour in colours track by colour.code">
+    <select class="colour-select" ng-model="selectedColour" ng-change="changeColour()" ng-options="colour.label for colour in colours track by colour.code">
     </select>
   </div>
 
@@ -45,18 +45,9 @@
             { 'label': 'Black', 'code': '#000000' }
           ];
           $scope.selectedColour = $scope.colours[0];
-          $scope.initDropdown = function() {
-          	$('.colour-select').selectBoxIt({
-                autoWidth: false,
-                isDeviceListPage: true,
-                showEffect: 'slideDown',
-                showEffectSpeed: 100,
-            	isColourList: true
-            });
-          }
           $scope.changeColour = function() {
             setTimeout(function () {
-            	$scope.initDropDown();
+            	initDropDown();
             	$(".colour-select").selectBoxIt("refresh");
             }, 100);
           };
