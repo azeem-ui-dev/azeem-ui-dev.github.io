@@ -44,9 +44,7 @@
           $scope.selectedColour = $scope.colours[0];
           $scope.changeColour = function() {
             setTimeout(function () {
-                $(":selectBox-selectBoxIt").each(function() {
-                  console.log($(this));
-                });                
+                $(".colour-select:selectBox-selectBoxIt").selectBoxIt('refresh');               
                 //$('.colour-select').data('selectBox-selectBoxIt').refresh();
             }, 100);
           };
